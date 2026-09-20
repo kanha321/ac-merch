@@ -51,7 +51,7 @@ export default function App() {
       {/* STAGE 3: Video Stage with Smooth Post-Video Transition */}
       <div
         className={`video-stage-container ${videoEnded ? "ended" : ""}`}
-        style={{ display: stage === "video" ? "flex" : "none" }}
+        style={{ display: stage === "video" ? "block" : "none" }}
       >
         {/* Video Wrapper (Translates Left on Desktop, Top on Mobile) */}
         <div className="video-viewport-wrapper">
