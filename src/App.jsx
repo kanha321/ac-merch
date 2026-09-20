@@ -64,19 +64,9 @@ export default function App() {
             <div className="reveal-tag">*** NOTICE ***</div>
 
             <h1 className="reveal-title">
-              WAIT TILL YOU GET YOUR MERCH
+              WAIT TILL YOU GET YOUR MERCH TO SEE
               <br />
-              TO SEE SOMETHING
-              <br />
-              INTERESTING{" "}
-              <a
-                href="https://forms.gle/injerkb8H5GDPNyw5"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="reveal-inline-link"
-              >
-                HERE...
-              </a>
+              SOMETHING INTERESTING HERE...
             </h1>
 
             <div className="reveal-divider">-----------------</div>
