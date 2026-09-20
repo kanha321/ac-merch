@@ -38,14 +38,6 @@ export default function App() {
     }
   };
 
-  const handleReplay = () => {
-    setVideoEnded(false);
-    if (videoRef.current) {
-      videoRef.current.currentTime = 0;
-      videoRef.current.play();
-    }
-  };
-
   return (
     <>
       {/* STAGE 3: Video Stage with Smooth Post-Video Transition */}
@@ -80,12 +72,8 @@ export default function App() {
             <div className="reveal-divider">-----------------</div>
 
             <p className="reveal-subtitle">
-              OFFICIAL DROP DROPPING SOON
+              AC MERCH DROPPING SOON
             </p>
-
-            <button onClick={handleReplay} className="nes-replay-btn">
-              ↺ WATCH AGAIN
-            </button>
 
             <div className="reveal-footer">
               &lt;APPLICATION_CLUB_MNNIT/&gt;
