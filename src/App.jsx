@@ -64,9 +64,7 @@ export default function App() {
             <div className="reveal-tag">*** NOTICE ***</div>
 
             <h1 className="reveal-title">
-              WAIT TILL YOU GET YOUR MERCH TO SEE
-              <br />
-              SOMETHING INTERESTING HERE...
+              WAIT TILL YOU GET YOUR MERCH TO SEE SOMETHING INTERESTING HERE...
             </h1>
 
             <div className="reveal-divider">-----------------</div>
