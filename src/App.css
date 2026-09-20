@@ -598,8 +598,8 @@
   background: #f5ede3;
   color: #2b1810;
   border: 2px solid #d4a373;
-  padding: 10px 18px;
-  font-size: 11px;
+  padding: 12px 24px;
+  font-size: 12px;
   letter-spacing: 1px;
   text-decoration: none;
   cursor: pointer;
@@ -624,9 +624,9 @@
 
 @media (max-width: 767px) {
   .nes-form-btn {
-    font-size: 9px;
-    padding: 8px 12px;
-    letter-spacing: 0.6px;
+    font-size: 10px;
+    padding: 10px 16px;
+    letter-spacing: 0.8px;
     white-space: nowrap;
   }
 }

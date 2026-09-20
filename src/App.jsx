@@ -71,17 +71,13 @@ export default function App() {
 
             <div className="reveal-divider">-----------------</div>
 
-            <p className="reveal-subtitle">
-              AC MERCH DROPPING SOON
-            </p>
-
             <a
               href="https://forms.gle/injerkb8H5GDPNyw5"
               target="_blank"
               rel="noopener noreferrer"
               className="nes-form-btn"
             >
-              ▶ FILL FORM TO BUY T-SHIRT ◀
+              ▶ GET YOURS NOW ◀
             </a>
 
             <div className="reveal-footer">
