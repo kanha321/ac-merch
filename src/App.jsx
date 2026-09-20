@@ -50,7 +50,7 @@ export default function App() {
     <>
       {/* STAGE 3: Video Stage with Smooth Post-Video Transition */}
       <div
-        className={ideo-stage-container }
+        className={`video-stage-container ${videoEnded ? "ended" : ""}`}
         style={{ display: stage === "video" ? "flex" : "none" }}
       >
         {/* Video Wrapper (Translates Left on Desktop, Top on Mobile) */}
