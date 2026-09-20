@@ -64,9 +64,19 @@ export default function App() {
             <div className="reveal-tag">*** NOTICE ***</div>
 
             <h1 className="reveal-title">
-              WAIT TILL YOU
+              WAIT TILL YOU GET YOUR MERCH
               <br />
-              GET YOUR MERCH
+              TO SEE SOMETHING
+              <br />
+              INTERESTING{" "}
+              <a
+                href="https://forms.gle/injerkb8H5GDPNyw5"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="reveal-inline-link"
+              >
+                HERE...
+              </a>
             </h1>
 
             <div className="reveal-divider">-----------------</div>
@@ -74,6 +84,15 @@ export default function App() {
             <p className="reveal-subtitle">
               AC MERCH DROPPING SOON
             </p>
+
+            <a
+              href="https://forms.gle/injerkb8H5GDPNyw5"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="nes-form-btn"
+            >
+              ▶ FILL FORM TO BUY T-SHIRT ◀
+            </a>
 
             <div className="reveal-footer">
               &lt;APPLICATION_CLUB_MNNIT/&gt;
