@@ -45,7 +45,7 @@ export default function App() {
       >
         <video
           ref={videoRef}
-          src="/ruko_zara.mp4"
+          src={`${import.meta.env.BASE_URL}ruko_zara.mp4`}
           playsInline
           webkit-playsinline="true"
           preload="auto"
@@ -59,7 +59,7 @@ export default function App() {
         <div className="app-container">
           {stage === "loading" && (
             <div className="loading-box">
-              <img src="/logo.png" alt="Application Club" className="ac-logo" />
+              <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Application Club" className="ac-logo" />
               <div className="loading-label">Loading Drop Preview...</div>
             </div>
           )}
