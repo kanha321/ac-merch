@@ -3,6 +3,7 @@ import "./App.css";
 
 export default function App() {
   const [stage, setStage] = useState("loading"); // "loading" | "error" | "video"
+  const [videoEnded, setVideoEnded] = useState(false);
   const videoRef = useRef(null);
 
   useEffect(() => {
@@ -21,6 +22,7 @@ export default function App() {
 
   const handleReload = () => {
     setStage("video");
+    setVideoEnded(false);
 
     if (videoRef.current) {
       videoRef.current.muted = false;
@@ -36,22 +38,60 @@ export default function App() {
     }
   };
 
+  const handleReplay = () => {
+    setVideoEnded(false);
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.play();
+    }
+  };
+
   return (
     <>
-      {/* STAGE 3: Fullscreen Video (No logo, edge-to-edge, 2.2s cut) */}
+      {/* STAGE 3: Video Stage with Smooth Post-Video Transition */}
       <div
-        className="fullscreen-video-container"
+        className={ideo-stage-container }
         style={{ display: stage === "video" ? "flex" : "none" }}
       >
-        <video
-          ref={videoRef}
-          src={`${import.meta.env.BASE_URL}ruko_zara.mp4`}
-          playsInline
-          webkit-playsinline="true"
-          preload="auto"
-          loop
-          className="fullscreen-video"
-        />
+        {/* Video Wrapper (Translates Left on Desktop, Top on Mobile) */}
+        <div className="video-viewport-wrapper">
+          <video
+            ref={videoRef}
+            src={`${import.meta.env.BASE_URL}ruko_zara.mp4`}
+            playsInline
+            webkit-playsinline="true"
+            preload="auto"
+            onEnded={() => setVideoEnded(true)}
+            className="fullscreen-video"
+          />
+        </div>
+
+        {/* Revealed Text Section (Right on Desktop, Bottom on Mobile) */}
+        <div className="merch-reveal-section">
+          <div className="merch-reveal-box">
+            <div className="reveal-tag">*** NOTICE ***</div>
+
+            <h1 className="reveal-title">
+              WAIT TILL YOU
+              <br />
+              GET YOUR MERCH
+            </h1>
+
+            <div className="reveal-divider">-----------------</div>
+
+            <p className="reveal-subtitle">
+              OFFICIAL DROP DROPPING SOON
+            </p>
+
+            <button onClick={handleReplay} className="nes-replay-btn">
+              ↺ WATCH AGAIN
+            </button>
+
+            <div className="reveal-footer">
+              &lt;APPLICATION_CLUB_MNNIT/&gt;
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Main UI (Stage 1 Loading & Stage 2 Fullscreen Error) */}
@@ -75,7 +115,6 @@ export default function App() {
           {/* STAGE 2: Full-screen 8-Bit NES Error Screen */}
           {stage === "error" && (
             <div className="nes-fullscreen-error">
-              {/* Scanline overlay effect */}
               <div className="scanlines"></div>
 
               {/* DESKTOP ERROR VIEW */}
