@@ -1,13 +1,15 @@
-/* Viewport Wrapper: Guarantees True Center On Mobile & Desktop */
-.app-container {
-  width: 100%;
-  height: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
-  display: grid;
-  place-items: center;
-  text-align: center;
-  padding: 20px;
+/* Main Viewport Container */
+.main-viewport {
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2b1810;
+  color: #f5ede3;
+  position: relative;
+  overflow: hidden;
 }
 
 /* STAGE 1: Centered Breathing Logo */
@@ -16,14 +18,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 24px;
-  margin: auto;
+  gap: 20px;
+  text-align: center;
+  padding: 20px;
 }
 
 .ac-logo {
   width: 110px;
   height: auto;
-  filter: brightness(0) invert(1) drop-shadow(0 0 16px rgba(245, 237, 227, 0.35));
+  filter: brightness(0) invert(1) drop-shadow(0 0 16px rgba(245, 237, 227, 0.4));
   animation: breathe 1.8s ease-in-out infinite;
 }
 
@@ -38,161 +41,334 @@
   }
 }
 
-.loading-label {
-  font-size: 13.5px;
+.loading-text {
+  font-family: 'NintendoNES', monospace;
+  font-size: 13px;
   letter-spacing: 2px;
-  text-transform: uppercase;
-  color: rgba(245, 237, 227, 0.85);
-  font-weight: 500;
+  color: #f5ede3;
 }
 
-/* STAGE 2: Redesigned Developer/Club On-Theme Error Card */
-.error-wrapper {
-  width: 100%;
+.loading-dots {
+  font-family: 'NintendoNES', monospace;
+  font-size: 16px;
+  color: #d4a373;
+  animation: blinkDots 1.4s infinite;
+}
+
+@keyframes blinkDots {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+/* STAGE 2: Fullscreen 8-Bit NES Error Screen */
+.nes-fullscreen-error {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  background-color: #24140d;
   display: flex;
-  justify-content: center;
   align-items: center;
-  margin: auto;
+  justify-content: center;
+  font-family: 'NintendoNES', monospace;
+  image-rendering: pixelated;
+  overflow: hidden;
+  z-index: 1000;
 }
 
-.error-card {
-  margin: 0 auto;
-  max-width: 350px;
+/* CRT Scanlines Overlay */
+.scanlines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 4px;
+  z-index: 5;
+  opacity: 0.65;
+}
+
+/* =================================================== */
+/* DESKTOP ERROR LAYOUT (min-width: 768px)             */
+/* =================================================== */
+.nes-desktop-layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  background: rgba(35, 19, 13, 0.88);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(245, 237, 227, 0.18);
-  border-radius: 24px;
-  padding: 30px 24px 26px;
+  height: 100%;
+  padding: 36px;
+  z-index: 10;
+}
+
+.nes-border-box {
+  width: 100%;
+  max-width: 780px;
+  background: rgba(43, 24, 16, 0.95);
+  border: 4px solid #f5ede3;
+  box-shadow:
+    inset 0 0 0 2px #2b1810,
+    inset 0 0 0 5px #d4a373,
+    0 16px 40px rgba(0, 0, 0, 0.7);
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  text-align: center;
+  position: relative;
+}
+
+.nes-header-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  font-size: 16px;
+  color: #f5ede3;
+  letter-spacing: 2px;
+}
+
+.nes-blink-star {
+  color: #d4a373;
+  animation: pulseStar 1.2s infinite;
+}
+
+@keyframes pulseStar {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.nes-error-banner {
+  background: #e63946;
+  color: #ffffff;
+  padding: 10px 18px;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  box-shadow: 3px 3px 0px #000000;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.nes-terminal-log {
+  background: rgba(0, 0, 0, 0.45);
+  border: 2px solid rgba(245, 237, 227, 0.25);
+  padding: 18px 20px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 11.5px;
+  line-height: 1.6;
+}
+
+.log-item {
+  color: rgba(245, 237, 227, 0.85);
+  letter-spacing: 1px;
+}
+
+.log-item.red {
+  color: #ff6b6b;
+}
+
+.log-item.yellow {
+  color: #f1fa8c;
+}
+
+.nes-action-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.nes-retro-btn {
+  font-family: 'NintendoNES', monospace;
+  background: #f5ede3;
+  color: #2b1810;
+  border: 3px solid #d4a373;
+  padding: 15px 36px;
+  font-size: 15px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0px #000, 6px 6px 0px #d4a373;
+  transition: all 0.15s ease;
+  outline: none;
+}
+
+.nes-retro-btn:hover {
+  background: #ffffff;
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #000, 8px 8px 0px #d4a373;
+}
+
+.nes-retro-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #000, 3px 3px 0px #d4a373;
+}
+
+.nes-subhint {
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: rgba(245, 237, 227, 0.6);
+}
+
+.nes-footer-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 9.5px;
+  color: rgba(245, 237, 227, 0.5);
+  border-top: 2px dashed rgba(245, 237, 227, 0.2);
+  padding-top: 14px;
+  margin-top: 6px;
+}
+
+/* =================================================== */
+/* MOBILE ERROR LAYOUT (max-width: 767px)              */
+/* =================================================== */
+.nes-mobile-layout {
+  display: none;
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  z-index: 10;
+}
+
+@media (max-width: 767px) {
+  .nes-desktop-layout {
+    display: none !important;
+  }
+
+  .nes-mobile-layout {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.nes-mobile-box {
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  max-height: 94dvh;
+  background: rgba(43, 24, 16, 0.96);
+  border: 3px solid #f5ede3;
+  box-shadow:
+    inset 0 0 0 2px #2b1810,
+    inset 0 0 0 4px #d4a373,
+    0 12px 30px rgba(0, 0, 0, 0.7);
+  padding: 24px 18px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 16px;
-  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(245, 237, 227, 0.05);
-  animation: popIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: center;
 }
 
-@keyframes popIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.96);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.status-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  background: rgba(212, 163, 115, 0.12);
-  border: 1px solid rgba(212, 163, 115, 0.3);
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 10.5px;
-  font-weight: 600;
-  letter-spacing: 0.8px;
-  color: #e6dac8;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-}
-
-.status-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: #d4a373;
-  box-shadow: 0 0 6px #d4a373;
-  animation: blink 1.6s infinite ease-in-out;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
-}
-
-.error-icon-box {
-  width: 52px;
-  height: 52px;
-  border-radius: 16px;
-  background: rgba(245, 237, 227, 0.06);
-  border: 1px solid rgba(245, 237, 227, 0.14);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.nes-mobile-tag {
+  font-size: 10px;
+  letter-spacing: 1.5px;
   color: #d4a373;
-  margin-top: 2px;
 }
 
-.error-title {
-  font-size: 18.5px;
-  font-weight: 600;
+.nes-mobile-title {
+  background: #e63946;
+  color: #ffffff;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  padding: 7px 12px;
+  box-shadow: 2px 2px 0px #000;
+  width: 100%;
+}
+
+.nes-mobile-msg {
+  font-size: 11.5px;
+  line-height: 1.7;
   color: #f5ede3;
-  letter-spacing: -0.2px;
-  margin-top: -2px;
+  letter-spacing: 1px;
 }
 
-.error-desc {
-  font-size: 13.5px;
-  line-height: 1.55;
-  color: rgba(245, 237, 227, 0.72);
-  max-width: 290px;
+.nes-mobile-log {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(245, 237, 227, 0.2);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-size: 10px;
+  text-align: left;
 }
 
-.reload-btn {
-  margin-top: 4px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
+.log-row {
+  display: flex;
+  justify-content: space-between;
+  color: rgba(245, 237, 227, 0.85);
+}
+
+.log-row .red {
+  color: #ff6b6b;
+}
+
+.log-row .yellow {
+  color: #f1fa8c;
+}
+
+.nes-mobile-btn {
+  font-family: 'NintendoNES', monospace;
+  width: 100%;
   background: #f5ede3;
   color: #2b1810;
-  border: none;
-  border-radius: 30px;
-  padding: 12px 28px;
-  font-size: 14.5px;
-  font-weight: 600;
-  letter-spacing: 0.2px;
+  border: 2px solid #d4a373;
+  padding: 14px 16px;
+  font-size: 13px;
+  letter-spacing: 1.5px;
   cursor: pointer;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 3px 3px 0px #000, 4px 4px 0px #d4a373;
+  margin-top: 2px;
   outline: none;
 }
 
-.reload-btn:hover {
-  background: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+.nes-mobile-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px #000, 2px 2px 0px #d4a373;
 }
 
-.reload-btn:active {
-  transform: translateY(1px) scale(0.98);
-}
-
-.reload-icon {
-  transition: transform 0.4s ease;
-}
-
-.reload-btn:hover .reload-icon {
-  transform: rotate(180deg);
-}
-
-.error-meta {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 10px;
+.nes-mobile-hint {
+  font-size: 9.5px;
+  color: rgba(245, 237, 227, 0.6);
   letter-spacing: 1px;
-  color: rgba(245, 237, 227, 0.4);
-  margin-top: 2px;
 }
 
-/* STAGE 3: Fullscreen Video (NO LOGO, 100% Viewport Height & Width) */
+.cursor {
+  animation: blinkCursor 0.8s infinite;
+}
+
+@keyframes blinkCursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.nes-mobile-footer {
+  font-size: 9px;
+  color: rgba(245, 237, 227, 0.4);
+  letter-spacing: 1px;
+  border-top: 1px dashed rgba(245, 237, 227, 0.2);
+  width: 100%;
+  padding-top: 8px;
+}
+
+/* =================================================== */
+/* STAGE 3: Fullscreen Video (NO LOGO, 100% Screen)     */
+/* =================================================== */
 .fullscreen-video-container {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100vw;
   height: 100vh;
   height: 100dvh;
@@ -213,7 +389,6 @@
   background: #000;
 }
 
-/* On wider screens (desktop/tablet), keep full height centered without cropping */
 @media (min-width: 768px) {
   .fullscreen-video {
     object-fit: contain;

@@ -30,7 +30,7 @@ export default function App() {
       const playPromise = videoRef.current.play();
       if (playPromise !== undefined) {
         playPromise.catch((err) => {
-          console.error("Autoplay play error:", err);
+          console.error("Autoplay error:", err);
         });
       }
     }
@@ -38,7 +38,7 @@ export default function App() {
 
   return (
     <>
-      {/* Fullscreen Video Stage (No logo, edge-to-edge) */}
+      {/* STAGE 3: Fullscreen Video (No logo, edge-to-edge, 2.2s cut) */}
       <div
         className="fullscreen-video-container"
         style={{ display: stage === "video" ? "flex" : "none" }}
@@ -54,76 +54,117 @@ export default function App() {
         />
       </div>
 
-      {/* Main Centered UI (Stage 1 & Stage 2) */}
+      {/* Main UI (Stage 1 Loading & Stage 2 Fullscreen Error) */}
       {stage !== "video" && (
-        <div className="app-container">
+        <div className="main-viewport">
+          {/* STAGE 1: Centered Breathing Logo Loading */}
           {stage === "loading" && (
             <div className="loading-box">
-              <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Application Club" className="ac-logo" />
-              <div className="loading-label">Loading Drop Preview...</div>
+              <img
+                src={`${import.meta.env.BASE_URL}logo.png`}
+                alt="Application Club"
+                className="ac-logo"
+              />
+              <div className="loading-text">LOADING DROP PREVIEW...</div>
+              <div className="loading-dots">
+                <span>.</span><span>.</span><span>.</span>
+              </div>
             </div>
           )}
 
+          {/* STAGE 2: Full-screen 8-Bit NES Error Screen */}
           {stage === "error" && (
-            <div className="error-wrapper">
-              <div className="error-card">
-                {/* On-theme status badge */}
-                <div className="status-pill">
-                  <span className="status-dot"></span>
-                  <span>AC-NET // 503 SERVICE TEMPORARILY UNAVAILABLE</span>
+            <div className="nes-fullscreen-error">
+              {/* Scanline overlay effect */}
+              <div className="scanlines"></div>
+
+              {/* DESKTOP ERROR VIEW */}
+              <div className="nes-desktop-layout">
+                <div className="nes-border-box">
+                  <div className="nes-header-line">
+                    <span className="nes-blink-star">***</span>
+                    <span className="nes-main-title">APPLICATION CLUB MNNIT</span>
+                    <span className="nes-blink-star">***</span>
+                  </div>
+
+                  <div className="nes-error-banner">
+                    SYSTEM ERROR: 503 // ASSETS CORRUPTED
+                  </div>
+
+                  <div className="nes-terminal-log">
+                    <p className="log-item">{">"} SYSTEM CHECK: MNNIT_SERVER_OK</p>
+                    <p className="log-item">{">"} FETCHING MERCHANDISE PACKAGES...</p>
+                    <p className="log-item red">{">"} ERROR: 0x503_DROP_UNRESOLVED</p>
+                    <p className="log-item">{">"} CAFE MOCHA BUFFER: OVERHEAT</p>
+                    <p className="log-item">{">"} ICED LATTE BLUEPRINT: NOT FOUND</p>
+                    <p className="log-item yellow">{">"} SYSTEM HALTED: MANUAL RELOAD REQUIRED</p>
+                  </div>
+
+                  <div className="nes-action-section">
+                    <button
+                      id="reloadBtnDesktop"
+                      onClick={handleReload}
+                      className="nes-retro-btn"
+                    >
+                      {">"} RELOAD PAGE {"<"}
+                    </button>
+                    <div className="nes-subhint">
+                      [ PRESS BUTTON TO REBOOT SYSTEM ]
+                    </div>
+                  </div>
+
+                  <div className="nes-footer-line">
+                    <span>CODE . CREATE . CONQUER</span>
+                    <span>1985-2026 AC ALLAHABAD</span>
+                  </div>
                 </div>
+              </div>
 
-                {/* Minimalist SVG Alert Icon */}
-                <div className="error-icon-box">
-                  <svg
-                    width="26"
-                    height="26"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+              {/* MOBILE ERROR VIEW */}
+              <div className="nes-mobile-layout">
+                <div className="nes-mobile-box">
+                  <div className="nes-mobile-tag">[ AC-MNNIT OS ]</div>
+
+                  <div className="nes-mobile-title">
+                    *** ERROR 503 ***
+                  </div>
+
+                  <div className="nes-mobile-msg">
+                    DROP ASSETS
+                    <br />
+                    FAILED TO LOAD
+                  </div>
+
+                  <div className="nes-mobile-log">
+                    <div className="log-row">
+                      <span>STATUS:</span>
+                      <span className="red">HALTED</span>
+                    </div>
+                    <div className="log-row">
+                      <span>CODE:</span>
+                      <span>0x503</span>
+                    </div>
+                    <div className="log-row">
+                      <span>ASSET:</span>
+                      <span className="yellow">TIMEOUT</span>
+                    </div>
+                  </div>
+
+                  <button
+                    id="reloadBtn"
+                    onClick={handleReload}
+                    className="nes-mobile-btn"
                   >
-                    <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
-                    <line x1="12" y1="9" x2="12" y2="13" />
-                    <line x1="12" y1="17" x2="12.01" y2="17" />
-                  </svg>
-                </div>
+                    ▶ RELOAD PAGE ◀
+                  </button>
 
-                <h2 className="error-title">Unable to Fetch Preview</h2>
-                
-                <p className="error-desc">
-                  An unexpected network interruption occurred while decrypting the exclusive merchandise assets.
-                </p>
+                  <div className="nes-mobile-hint">
+                    TAP TO RETRY<span className="cursor">_</span>
+                  </div>
 
-                {/* On-theme Reload Button with crisp SVG */}
-                <button
-                  id="reloadBtn"
-                  onClick={handleReload}
-                  className="reload-btn"
-                >
-                  <svg
-                    className="reload-icon"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.4"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
-                    <path d="M3 3v5h5" />
-                    <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16" />
-                    <path d="M21 21v-5h-5" />
-                  </svg>
-                  <span>Reload Page</span>
-                </button>
-
-                <div className="error-meta">
-                  <span>ERR_CONNECTION_TIMED_OUT</span>
+                  <div className="nes-mobile-footer">
+                    &lt;MNNIT_ALLAHABAD/&gt;
+                  </div>
                 </div>
               </div>
             </div>
