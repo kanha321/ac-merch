@@ -95,8 +95,8 @@ export default function App() {
                     <p className="log-item">{">"} SYSTEM CHECK: MNNIT_SERVER_OK</p>
                     <p className="log-item">{">"} FETCHING MERCHANDISE PACKAGES...</p>
                     <p className="log-item red">{">"} ERROR: 0x503_DROP_UNRESOLVED</p>
-                    <p className="log-item">{">"} CAFE MOCHA BUFFER: OVERHEAT</p>
-                    <p className="log-item">{">"} ICED LATTE BLUEPRINT: NOT FOUND</p>
+                    <p className="log-item">{">"} SECRET_DROP_PROTOCOL: ENCRYPTED</p>
+                    <p className="log-item">{">"} PREVIEW_DECRYPTION: REJECTED</p>
                     <p className="log-item yellow">{">"} SYSTEM HALTED: MANUAL RELOAD REQUIRED</p>
                   </div>
 
