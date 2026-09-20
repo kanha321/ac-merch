@@ -1,0 +1,221 @@
+/* Viewport Wrapper: Guarantees True Center On Mobile & Desktop */
+.app-container {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+/* STAGE 1: Centered Breathing Logo */
+.loading-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin: auto;
+}
+
+.ac-logo {
+  width: 110px;
+  height: auto;
+  filter: brightness(0) invert(1) drop-shadow(0 0 16px rgba(245, 237, 227, 0.35));
+  animation: breathe 1.8s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(0.92);
+    opacity: 0.75;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+.loading-label {
+  font-size: 13.5px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(245, 237, 227, 0.85);
+  font-weight: 500;
+}
+
+/* STAGE 2: Redesigned Developer/Club On-Theme Error Card */
+.error-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.error-card {
+  margin: 0 auto;
+  max-width: 350px;
+  width: 100%;
+  background: rgba(35, 19, 13, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(245, 237, 227, 0.18);
+  border-radius: 24px;
+  padding: 30px 24px 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(245, 237, 227, 0.05);
+  animation: popIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(212, 163, 115, 0.12);
+  border: 1px solid rgba(212, 163, 115, 0.3);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  color: #e6dac8;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #d4a373;
+  box-shadow: 0 0 6px #d4a373;
+  animation: blink 1.6s infinite ease-in-out;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.error-icon-box {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: rgba(245, 237, 227, 0.06);
+  border: 1px solid rgba(245, 237, 227, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d4a373;
+  margin-top: 2px;
+}
+
+.error-title {
+  font-size: 18.5px;
+  font-weight: 600;
+  color: #f5ede3;
+  letter-spacing: -0.2px;
+  margin-top: -2px;
+}
+
+.error-desc {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: rgba(245, 237, 227, 0.72);
+  max-width: 290px;
+}
+
+.reload-btn {
+  margin-top: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  background: #f5ede3;
+  color: #2b1810;
+  border: none;
+  border-radius: 30px;
+  padding: 12px 28px;
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+}
+
+.reload-btn:hover {
+  background: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+}
+
+.reload-btn:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.reload-icon {
+  transition: transform 0.4s ease;
+}
+
+.reload-btn:hover .reload-icon {
+  transform: rotate(180deg);
+}
+
+.error-meta {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: rgba(245, 237, 227, 0.4);
+  margin-top: 2px;
+}
+
+/* STAGE 3: Fullscreen Video (NO LOGO, 100% Viewport Height & Width) */
+.fullscreen-video-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  background: #000;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.fullscreen-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  background: #000;
+}
+
+/* On wider screens (desktop/tablet), keep full height centered without cropping */
+@media (min-width: 768px) {
+  .fullscreen-video {
+    object-fit: contain;
+  }
+}
