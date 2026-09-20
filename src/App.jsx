@@ -109,13 +109,13 @@ export default function App() {
                       {">"} RELOAD PAGE {"<"}
                     </button>
                     <div className="nes-subhint">
-                      [ PRESS BUTTON TO REBOOT SYSTEM ]
+                      [ PRESS BUTTON TO RETRY ]
                     </div>
                   </div>
 
                   <div className="nes-footer-line">
                     <span>CODE . CREATE . CONQUER</span>
-                    <span>1985-2026 AC ALLAHABAD</span>
+                    <span>APPLICATION CLUB MNNIT</span>
                   </div>
                 </div>
               </div>
