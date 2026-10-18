@@ -69,14 +69,9 @@ export default function App() {
 
             <div className="reveal-divider">-----------------</div>
 
-            <a
-              href="https://forms.gle/injerkb8H5GDPNyw5"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="nes-form-btn"
-            >
-              ▶ GET YOURS NOW ◀
-            </a>
+            <div className="nes-coming-soon-badge">
+              ▶ COMING SOON ◀
+            </div>
 
             <div className="reveal-footer">
               &lt;APPLICATION_CLUB_MNNIT/&gt;

@@ -589,7 +589,8 @@
   }
 }
 
-.nes-form-btn {
+.nes-form-btn,
+.nes-coming-soon-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -600,14 +601,22 @@
   border: 2px solid #d4a373;
   padding: 12px 24px;
   font-size: 12px;
-  letter-spacing: 1px;
+  letter-spacing: 1.2px;
   text-decoration: none;
-  cursor: pointer;
   box-shadow: 3px 3px 0px #000, 4px 4px 0px #d4a373;
   margin-top: 4px;
   outline: none;
   transition: all 0.15s ease;
   text-align: center;
+}
+
+.nes-form-btn {
+  cursor: pointer;
+}
+
+.nes-coming-soon-badge {
+  cursor: default;
+  user-select: none;
 }
 
 .nes-form-btn:hover {
@@ -623,7 +632,8 @@
 }
 
 @media (max-width: 767px) {
-  .nes-form-btn {
+  .nes-form-btn,
+  .nes-coming-soon-badge {
     font-size: 10px;
     padding: 10px 16px;
     letter-spacing: 0.8px;
